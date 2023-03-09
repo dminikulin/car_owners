@@ -57,7 +57,8 @@ class CarController extends Controller
     public function edit(Car $car)
     {
         return view("cars.edit", [
-            "car"=>$car
+            "car"=>$car,
+            "owners"=>Owner::all()
         ]);
     }
 
@@ -69,7 +70,7 @@ class CarController extends Controller
         $car->reg_number=$request->reg_number;
         $car->brand=$request->brand;
         $car->model=$request->model;
-//        $car->owner_id=$request->owner_id;
+        $car->owner_id=$request->owner_id;
         $car->save();
 
         return redirect()->route("cars.index");

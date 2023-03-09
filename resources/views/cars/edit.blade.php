@@ -24,16 +24,12 @@
                                 <input type="text" name="model" value="{{$car->model}}"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Owner: {{$car->owner->name}} {{$car->owner->surname}}</label>
-{{--                                <select class="form-select" name="owner_id">--}}
-{{--                                    @foreach($owners as $owner)--}}
-{{--                                        @if($car->owner_id == $owner->id)--}}
-{{--                                        <option selected value="{{$owner->id}}">{{$owner->name}} {{$owner->surname}}</option>--}}
-{{--                                        @else--}}
-{{--                                        <option value="{{$owner->id}}">{{$owner->name}} {{$owner->surname}}</option>--}}
-{{--                                        @endif--}}
-{{--                                    @endforeach--}}
-{{--                                </select>--}}
+                                <label class="form-label">Owner </label>
+                                <select class="form-select" name="owner_id">
+                                    @foreach($owners as $owner)
+                                        <option @if($car->owner_id == $owner->id) selected @endif value="{{$owner->id}}">{{$owner->name}} {{$owner->surname}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <button class="btn btn-success">Add</button>
                         </form>
