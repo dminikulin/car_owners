@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\OwnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource("owners", \App\Http\Controllers\OwnerController::class);
-Route::resource("cars", \App\Http\Controllers\CarController::class);
+Route::post("owners/search", [OwnerController::class, 'search'])->name("owners.search");
+Route::resource("owners", OwnerController::class);
+Route::post("cars/search", [CarController::class, 'search'])->name("cars.search");
+Route::resource("cars", CarController::class);
 
 Auth::routes();
 
