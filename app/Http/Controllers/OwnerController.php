@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OwnerController extends Controller
 {
@@ -14,8 +15,8 @@ class OwnerController extends Controller
     {
         $searchOwnerName = $request->session()->get('searchOwnerName');
         if($searchOwnerName!=null){
-            $owners=Owner::where('name', 'like', $searchOwnerName)->
-                orWhere('surname', 'like', $searchOwnerName)->
+            $owners=Owner::select("id", "name", "surname")->
+                orWhere(DB::raw("concat(name, ' ', surname)"), 'LIKE', "%".$searchOwnerName."%")->
                 with('cars')->get();
         }else{
             $owners=Owner::with('cars')->get();

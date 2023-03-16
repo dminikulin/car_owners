@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
@@ -15,9 +16,8 @@ class CarController extends Controller
     {
         $searchCarName = $request->session()->get('searchCarName');
         if($searchCarName!=null){
-            $cars=Car::where('reg_number', 'like', $searchCarName)->
-                orWhere('brand', 'like', $searchCarName)->
-                orWhere('model', 'like', $searchCarName)->
+            $cars=Car::select("id", "reg_number", "brand", "model", "owner_id")->
+                orWhere(DB::raw("concat(reg_number, ' ', brand, ' ', model)"), 'LIKE', "%".$searchCarName."%")->
                 with('owner')->get();
         }else{
             $cars=Car::with('owner')->get();
