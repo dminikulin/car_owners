@@ -5,33 +5,33 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ __('Edit car') }}</div>
 
                     <div class="card-body">
                         <form method="post" action="{{ route('cars.update', $car->id) }}">
                             @csrf
                             @method("put")
                             <div class="mb-3">
-                                <label class="form-label">Registration number</label>
-                                <input type="text" name="reg_number" value="{{$car->reg_number}}"/>
+                                <label class="form-label">{{__('Reg. number')}}</label>
+                                <input class="form-control" type="text" name="reg_number" value="{{$car->reg_number}}"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Brand</label>
-                                <input type="text" name="brand" value="{{$car->brand}}"/>
+                                <label class="form-label">{{__('Brand')}}</label>
+                                <input class="form-control" type="text" name="brand" value="{{$car->brand}}"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Model</label>
-                                <input type="text" name="model" value="{{$car->model}}"/>
+                                <label class="form-label">{{__('Model')}}</label>
+                                <input class="form-control" type="text" name="model" value="{{$car->model}}"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Owner </label>
+                                <label class="form-label">{{__('Owner')}}</label>
                                 <select class="form-select" name="owner_id">
                                     @foreach($owners as $owner)
                                         <option @if($car->owner_id == $owner->id) selected @endif value="{{$owner->id}}">{{$owner->name}} {{$owner->surname}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <button class="btn btn-success">Add</button>
+                            <button class="btn btn-success">{{__('Update')}}</button>
                         </form>
 
                     </div>

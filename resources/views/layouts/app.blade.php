@@ -20,21 +20,22 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> --}}
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    <strong class="navbar-brand">[[name]]</strong>
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('owners.index')}}">Owners</a>
+                            <a class="nav-link" href="{{route('owners.index')}}">{{__('Owners')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('cars.index')}}">Cars</a>
+                            <a class="nav-link" href="{{route('cars.index')}}">{{__('Cars')}}</a>
                         </li>
                     </ul>
 
@@ -63,7 +64,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('auth.logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -78,8 +79,26 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="height: 60px;">
+                        <div class="float-end">
+                            <a class="btn btn-secondary" href="{{ route("lang", "ua") }}">UA</a> &nbsp;
+                            <a class="btn btn-secondary"  href="{{ route("lang", "en") }}">EN</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             @yield('content')
         </main>
+
+        <div class="card">
+            <div class="card-header">
+                <strong>[[name]]</strong>
+                <strong>[[phone]]</strong>
+            </div>
+        </div>
     </div>
 </body>
 </html>
