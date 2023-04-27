@@ -23,18 +23,22 @@
                             <thead>
                             <tr>
                                 {{-- <th>ID</th> --}}
-                                <th>{{__('Reg. number')}}</th>
                                 <th>{{__('Model')}}</th>
                                 <th>{{__('Owner')}}</th>
+                                <th>{{__('Reg. number')}}</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($cars as $car)
                                 <tr>
-                                    {{-- <td>{{$car->id}}</td> --}}
-                                    <td>{{$car->reg_number}}</td>
+                                    <td>
+                                        @if ($car->image!=null)
+                                            <img src="{{ asset("/storage/cars/".$car->image) }}" width="100">
+                                        @endif
+                                    </td>
                                     <td>{{$car->brand}} {{$car->model}}</td>
                                     <td>{{$car->owner->name}} {{$car->owner->surname}}</td>
+                                    <td>{{$car->reg_number}}</td>
 
                                     <td style="width: 100px;">
                                         <a class="btn btn-outline-dark" href="{{ route("cars.edit",$car->id) }}">{{__('Edit')}}</a>
