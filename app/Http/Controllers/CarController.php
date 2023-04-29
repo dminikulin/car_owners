@@ -107,7 +107,6 @@ class CarController extends Controller
 
         return redirect()->route("cars.index");
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -121,4 +120,14 @@ class CarController extends Controller
         $request->session()->put('searchCarName', $request->name);
         return redirect()->route("cars.index");
     }
+
+    public function removeImage($carId){
+        $car = Car::find($carId);
+        if($car->image!=null){
+            $car->image=null;
+        }
+        $car->save();
+        return redirect()->route("cars.index");
+    }
+
 }

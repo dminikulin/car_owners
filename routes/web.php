@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post("owners/search", [OwnerController::class, 'search'])->name("owners.search");
     Route::post("cars/search", [CarController::class, 'search'])->name("cars.search");
+    Route::get("cars/removeImage/{id}", [CarController::class, 'removeImage'])->name("cars.removeImage");
 
     Route::resource("owners", OwnerController::class)->except(['index'])->middleware('admin');
     Route::resource("cars", CarController::class)->except(['index'])->middleware('admin');

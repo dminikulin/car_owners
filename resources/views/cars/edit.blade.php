@@ -11,6 +11,9 @@
                         <form method="post" action="{{ route('cars.update', $car->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method("put")
+                            @if ($car->image!=null)
+                                    <img src="{{ asset("/storage/cars/".$car->image) }}" width="200">
+                                @endif
                             <div class="mb-3">
                                 <label class="form-label">{{__('Reg. number')}}</label>
                                 <input class="form-control" type="text" name="reg_number" value="{{$car->reg_number}}"/>
@@ -25,7 +28,8 @@
                             </div>
                             <div class="mb-3">
                                 <label  class="form-label" >Image</label>
-                                <input   class="form-control" type="file" name="image" >
+                                <input  class="form-control" type="file" name="image">
+                                <a class="btn btn-danger" href={{route('cars.removeImage', $car->id)}}>Remove image</a>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__('Owner')}}</label>
